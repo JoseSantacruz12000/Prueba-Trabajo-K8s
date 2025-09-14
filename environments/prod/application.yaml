@@ -1,20 +1,20 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: postgres-only
+  name: pedido-app
   namespace: argocd
 spec:
   project: default
   source:
-    repoURL: oci://registry-1.docker.io/bitnamicharts
-    targetRevision: 15.5.23
-    chart: postgresql
+    repoURL: https://github.com/JoseSantacruz12000/Prueba-Trabajo-K8s.git   # tu repo
+    targetRevision: HEAD                                 # rama (main, HEAD o tag)
+    path: charts/pedido-app                              # ruta al chart padre
     helm:
       valueFiles:
-        - environments/prod/values.yaml
+        - values.yaml                                    # usa tu values.yaml del chart padre
   destination:
     server: https://kubernetes.default.svc
-    namespace: db-test
+    namespace: my-tech                                   # namespace destino
   syncPolicy:
     automated:
       prune: true
