@@ -1,0 +1,9 @@
+postgresql:
+  auth:
+    username: admin
+    password: supersecret
+    database: pedidos
+  primary:
+    persistence:
+      enabled: true
+      size: 1Gi
