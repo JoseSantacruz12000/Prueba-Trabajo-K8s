@@ -7,3 +7,19 @@ postgresql:
     persistence:
       enabled: true
       size: 1Gi
+backend:
+  image:
+    repository: josedavidsantacruz/pedido-backend   
+    tag: "1.0.0"
+  replicas: 2
+  db:
+    host: pedido-app-postgresql.my-tech.svc.cluster.local
+    name: pedidos
+    port: 5432
+  resources:
+    limits:
+      cpu: "500m"
+      memory: "512Mi"
+    requests:
+      cpu: "250m"
+      memory: "256Mi"
