@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: backend
 spec:
-  replicas: { { .Values.backend.replicas } }
+  replicas: {{ .Values.backend.replicas }}
   selector:
     matchLabels:
       app: backend
@@ -22,4 +22,4 @@ spec:
                 name: backend-config
             - secretRef:
                 name: backend-secret
-          resources: { { - toYaml .Values.backend.resources | nindent 12 } }
+          resources: {{ - toYaml .Values.backend.resources | nindent 12 }}
