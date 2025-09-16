@@ -1,16 +1,16 @@
-service:
-  type: ClusterIP  # 👈 clave correcta
-  ports:
-    http: 80
-    https: 443
+controller:
+  serviceType: ClusterIP   # 👈 aquí sí se usa serviceType
+  adminUser: admin
+  adminPassword: supersecret
 
-jenkinsUser: admin
-jenkinsPassword: supersecret
+  resources:
+    requests:
+      cpu: "250m"
+      memory: "512Mi"
+    limits:
+      cpu: "500m"
+      memory: "1Gi"
 
-resources:
-  limits:
-    cpu: 500m
-    memory: 1Gi
-  requests:
-    cpu: 250m
-    memory: 512Mi
+persistence:
+  enabled: true
+  size: 8Gi
