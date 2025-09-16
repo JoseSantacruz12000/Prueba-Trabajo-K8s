@@ -1,12 +1,16 @@
-controller:
-  serviceType: ClusterIP 
-  jenkinsUser: admin
-  jenkinsPassword: supersecret
+service:
+  type: ClusterIP  # 👈 clave correcta
+  ports:
+    http: 80
+    https: 443
 
-  resources:
-    limits:
-      cpu: "500m"
-      memory: "1Gi"
-    requests:
-      cpu: "250m"
-      memory: "512Mi"
+jenkinsUser: admin
+jenkinsPassword: supersecret
+
+resources:
+  limits:
+    cpu: 500m
+    memory: 1Gi
+  requests:
+    cpu: 250m
+    memory: 512Mi
