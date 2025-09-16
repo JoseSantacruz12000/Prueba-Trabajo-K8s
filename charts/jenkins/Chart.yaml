@@ -1,0 +1,10 @@
+apiVersion: v2
+name: jenkins-wrapper
+description: Chart wrapper para Jenkins desde Bitnami
+type: application
+version: 0.1.0
+
+dependencies:
+  - name: jenkins
+    version: 12.3.1
+    repository: https://charts.bitnami.com/bitnami
