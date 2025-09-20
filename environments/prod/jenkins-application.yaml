@@ -1,14 +1,17 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: jenkins
+  name: jenkins-1
   namespace: argocd
 spec:
   project: default
   source:
-    repoURL: https://github.com/JoseSantacruz12000/Prueba-Trabajo-K8s.git    
-    targetRevision: HEAD
-    path: charts/jenkins                     
+    repoURL: https://charts.jenkins.io
+    targetRevision: 5.8.86
+    helm:
+      valueFiles:
+        - values.yaml
+    chart: jenkins
   destination:
     server: https://kubernetes.default.svc
     namespace: ci-cd
@@ -16,3 +19,6 @@ spec:
     automated:
       prune: true
       selfHeal: true
+      enabled: true
+    syncOptions:
+      - PruneLast=true

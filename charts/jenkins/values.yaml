@@ -7,6 +7,10 @@ controller:
     - workflow-aggregator:latest
     - git:latest
     - configuration-as-code:latest
+    - git:5.6.0
+    - git-client:6.1.4
+    - configuration-as-code:1932.v75cb_b_f1b_698d
+
 
   # 👇 Corrección de permisos
   runAsUser: 1000

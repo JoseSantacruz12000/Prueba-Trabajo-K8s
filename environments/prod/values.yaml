@@ -1,0 +1,4 @@
+controller:
+  serviceType: ClusterIP   # 👈 aquí sí se usa serviceType
+  adminUser: admin
+  adminPassword: supersecret
