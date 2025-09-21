@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         DOCKERHUB_CREDENTIALS = credentials('dockerhub-credentials') // Cambia el ID
-        DOCKER_IMAGE = 'josedavidsantacruz/pedido-backend'
+        DOCKER_IMAGE = 'rougev/pedido-backend'
         TAG = "${env.BUILD_NUMBER}"
     }
 
@@ -13,28 +13,9 @@ pipeline {
                 checkout scm
             }
         }
-        // stage('Install Docker') {
-        //     steps{
-        //         sh 'sudo apt-get update'
-        //         sh 'sudo apt-get install -y docker.io'
-        //     }
-        // }
-        // stage('Build Docker Image') {
-        //     steps {
-        //         sh "docker build -t ${DOCKER_IMAGE}:${TAG} backend"
-        //     }
-        // }
         stage('Build Docker Image') {
             steps {
-                container('kaniko') {
-                    sh '''
-                    /kaniko/executor \
-                    --dockerfile=Dockerfile \
-                    --context=dir://$WORKSPACE/backend \
-                    --destination=josedavidsantacruz/pedido-backend:latest \
-                    --skip-tls-verify
-                    '''
-                }
+                sh "docker build -t ${DOCKER_IMAGE}:${TAG} backend"
             }
         }
         stage('Push to Docker Hub') {
