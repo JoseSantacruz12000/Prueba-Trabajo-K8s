@@ -8,10 +8,21 @@ spec:
   source:
     repoURL: https://charts.jenkins.io
     targetRevision: 5.8.86
-    helm:
-      valueFiles:
-        - values.yaml
     chart: jenkins
+    helm:
+      valuesObject:
+        controller:
+          serviceType: ClusterIP   # 👈 aquí sí se usa serviceType
+          admin:
+            username: admin
+            password: supersecret
+        volumeMounts:
+          - name: docker-sock
+            mountPath: /var/run/docker.sock
+        volumes:
+          - name: docker-sock
+            hostPath:
+              path: /var/run/docker.sock
   destination:
     server: https://kubernetes.default.svc
     namespace: ci-cd
