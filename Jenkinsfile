@@ -38,7 +38,7 @@ pipeline {
                     git config user.name "Jenkins"
                     git add values.yaml
                     git commit -m "Update image tag to ${TAG}"
-                    git push origin main
+                    git push origin-argos main
                     '''
                 }
             }
