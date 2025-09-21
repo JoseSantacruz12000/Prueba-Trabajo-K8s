@@ -12,6 +12,4 @@ def get_service():
 def crear_cliente(nombre: str, email: str, service: ClienteService = Depends(get_service)):
     return service.crear_cliente(nombre, email)
 
-@router.get("/home")
-def listar_clientes(service: ClienteService = Depends(get_service)):
-    return service.listar_clientes()
+
