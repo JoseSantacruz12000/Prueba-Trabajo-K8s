@@ -30,8 +30,6 @@ pipeline {
                 script {
                     
                     sh '''
-                    apt-get update
-                    apt-get install -y docker.io
                     rm -rf helm-charts
                     git clone git@github.com:idgualtero/helm-charts.git
                     cd helm-charts/charts/pedido-app
