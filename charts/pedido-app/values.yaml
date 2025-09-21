@@ -9,7 +9,7 @@ postgresql:
       size: 1Gi
 backend:
   image:
-    repository: josedavidsantacruz/pedido-backend
+    repository: rougev/pedido-backend
     tag: "1.0.1"
   replicas: 2
   db:
