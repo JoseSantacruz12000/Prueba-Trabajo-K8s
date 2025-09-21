@@ -30,7 +30,7 @@ pipeline {
                 script {
                     
                     sh '''
-                    rm -rf helm-charts
+                    rm -rf argos-unisabana
                     git clone git@github.com:AndresTorresMartinez/argos-unisabana.git
                     cd charts/pedido-app
                     sed -i "s/tag: .*/tag: ${TAG}/" values.yaml
