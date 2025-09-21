@@ -25,25 +25,25 @@ pipeline {
             }
         }
         
-        // stage('Update Helm Chart') {
-        //     steps {
-        //         script {
+        stage('Update Helm Chart') {
+            steps {
+                script {
                     
-        //             sh '''
-        //             apt-get update
-        //             apt-get install -y docker.io
-        //             rm -rf helm-charts
-        //             git clone git@github.com:idgualtero/helm-charts.git
-        //             cd helm-charts/charts/pedido-app
-        //             sed -i "s/tag: .*/tag: ${TAG}/" values.yaml
-        //             git config user.email "jenkins@local"
-        //             git config user.name "Jenkins"
-        //             git add values.yaml
-        //             git commit -m "Update image tag to ${TAG}"
-        //             git push origin main
-        //             '''
-        //         }
-        //     }
-        // }
+                    sh '''
+                    apt-get update
+                    apt-get install -y docker.io
+                    rm -rf helm-charts
+                    git clone git@github.com:idgualtero/helm-charts.git
+                    cd helm-charts/charts/pedido-app
+                    sed -i "s/tag: .*/tag: ${TAG}/" values.yaml
+                    git config user.email "jenkins@local"
+                    git config user.name "Jenkins"
+                    git add values.yaml
+                    git commit -m "Update image tag to ${TAG}"
+                    git push origin main
+                    '''
+                }
+            }
+        }
     }
 }
