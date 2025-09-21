@@ -13,11 +13,11 @@ pipeline {
                 checkout scm
             }
         }
-        stage('Build Docker Image') {
-        sh '''
-        apt-get update
-        apt-get install -y docker.io
-        '''
+        stage('Install Docker') {
+            steps{
+                sh 'apt-get update'
+                sh 'apt-get install -y docker.io'
+            }
         }
         stage('Build Docker Image') {
             steps {
