@@ -13,15 +13,26 @@ pipeline {
                 checkout scm
             }
         }
-        stage('Install Docker') {
-            steps{
-                sh 'sudo apt-get update'
-                sh 'sudo apt-get install -y docker.io'
-            }
-        }
+        // stage('Install Docker') {
+        //     steps{
+        //         sh 'sudo apt-get update'
+        //         sh 'sudo apt-get install -y docker.io'
+        //     }
+        // }
+        // stage('Build Docker Image') {
+        //     steps {
+        //         sh "docker build -t ${DOCKER_IMAGE}:${TAG} backend"
+        //     }
+        // }
         stage('Build Docker Image') {
-            steps {
-                sh "docker build -t ${DOCKER_IMAGE}:${TAG} backend"
+            container('kaniko') {
+                sh '''
+                /kaniko/executor \
+                --dockerfile=Dockerfile \
+                --context=dir://$WORKSPACE/backend \
+                --destination=josedavidsantacruz/pedido-backend:latest \
+                --skip-tls-verify
+                '''
             }
         }
         stage('Push to Docker Hub') {
@@ -30,6 +41,7 @@ pipeline {
                 sh "docker push ${DOCKER_IMAGE}:${TAG}"
             }
         }
+        
         // stage('Update Helm Chart') {
         //     steps {
         //         script {
