@@ -36,6 +36,7 @@ pipeline {
                     sed -i "s/tag: .*/tag: ${TAG}/" values.yaml
                     git config user.email "jenkins@local"
                     git config user.name "Jenkins"
+                    git switch -c origin-argos/main main
                     git add values.yaml
                     git commit -m "Update image tag to ${TAG}"
                     git push origin-argos main
