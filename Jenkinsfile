@@ -14,6 +14,12 @@ pipeline {
             }
         }
         stage('Build Docker Image') {
+        sh '''
+        apt-get update
+        apt-get install -y docker.io
+        '''
+        }
+        stage('Build Docker Image') {
             steps {
                 sh "docker build -t ${DOCKER_IMAGE}:${TAG} backend"
             }
@@ -27,7 +33,10 @@ pipeline {
         // stage('Update Helm Chart') {
         //     steps {
         //         script {
+                    
         //             sh '''
+        //             apt-get update
+        //             apt-get install -y docker.io
         //             rm -rf helm-charts
         //             git clone git@github.com:idgualtero/helm-charts.git
         //             cd helm-charts/charts/pedido-app
