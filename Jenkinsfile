@@ -25,14 +25,16 @@ pipeline {
         //     }
         // }
         stage('Build Docker Image') {
-            container('kaniko') {
-                sh '''
-                /kaniko/executor \
-                --dockerfile=Dockerfile \
-                --context=dir://$WORKSPACE/backend \
-                --destination=josedavidsantacruz/pedido-backend:latest \
-                --skip-tls-verify
-                '''
+            steps {
+                container('kaniko') {
+                    sh '''
+                    /kaniko/executor \
+                    --dockerfile=Dockerfile \
+                    --context=dir://$WORKSPACE/backend \
+                    --destination=josedavidsantacruz/pedido-backend:latest \
+                    --skip-tls-verify
+                    '''
+                }
             }
         }
         stage('Push to Docker Hub') {
